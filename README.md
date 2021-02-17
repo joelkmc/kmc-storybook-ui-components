@@ -1,6 +1,6 @@
 # Description
 
-Storybook is used to test / visualize custom UI components
+Storybook is used for documentation / testing custom UI components on top of antd and tailwindcss visit [this](https://joelkmc.github.io/kmc-storybook-ui-components/) to see existing components
 
 ## Installation
 
@@ -16,4 +16,12 @@ To run on browser with hot reload
 
 ```bash
 yarn storybook
+```
+
+## Build Process
+
+For any changes to reflect on [Static page](https://joelkmc.github.io/kmc-storybook-ui-components/).
+
+```bash
+yarn deploy-storybook
 ```
