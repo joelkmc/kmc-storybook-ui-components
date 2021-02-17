@@ -1,0 +1,29 @@
+/* purgecss start ignore */
+@tailwind base;
+@tailwind components;
+/* purgecss end ignore */
+
+@layer base {
+  /*! purgecss start ignore */
+  @font-face {
+    font-family: 'ProximanovaRegular';
+    src: url('../assets/fonts/PROXIMANOVA-REGULAR.OTF');
+  }
+
+  @font-face {
+    font-family: 'ProximanovaSemiBold';
+    src: url('../assets/fonts/PROXIMANOVA-SEMIBOLD.OTF');
+  }
+
+  @font-face {
+    font-family: 'ProximanovaExtraBold';
+    src: url('../assets/fonts/PROXIMANOVA-EXTRABOLD.OTF');
+  }
+
+  svg {
+    @apply align-baseline;
+  }
+  /*! purgecss end ignore */
+}
+
+@tailwind utilities;
