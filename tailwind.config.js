@@ -5,6 +5,12 @@ module.exports = {
   presets: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    extend: {
+      zIndex: {
+        '-10': '-10',
+      },
+      // screens: { 'hover-hover': { raw: '(hover: hover)' } },
+    },
     screens: {
       xs: '320px',
       sm: '640px',
@@ -16,8 +22,18 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
+      kmcBlueLite: '#56CCF2',
+      kmcBlueBase: '#2D9CDB',
+      kmcBlueDark: '#2F80ED',
+      kmcGreenLite: '#6FCF97',
+      kmcGreenBase: '#27AE60',
+      kmcGreenDark: '#219653',
+      kmcGrayLite: '#E0E0E0',
+      kmcGrayBase: '#838383',
+      kmcGrayDark: '#333333',
       kmcOrange: '#f99d3a',
       kmcYellow: '#f2c94c',
+      kmcVisitedLinks: '#733d90',
       black: colors.black,
       white: colors.white,
       gray: colors.coolGray,
@@ -753,6 +769,10 @@ module.exports = {
     'disabled',
   ],
   variants: {
+    extend: {
+      backgroundColor: ['active'],
+    },
+
     accessibility: ['responsive', 'focus-within', 'focus'],
     alignContent: ['responsive'],
     alignItems: ['responsive'],
@@ -780,7 +800,7 @@ module.exports = {
     backgroundPosition: ['responsive'],
     backgroundRepeat: ['responsive'],
     backgroundSize: ['responsive'],
-    borderCollapse: ['responsive'],
+    borderCollapse: ['responsive', 'hover'],
     borderColor: [
       'responsive',
       'dark',
@@ -788,6 +808,7 @@ module.exports = {
       'focus-within',
       'hover',
       'focus',
+      'active',
     ],
     borderOpacity: [
       'responsive',
@@ -796,9 +817,9 @@ module.exports = {
       'hover',
       'focus',
     ],
-    borderRadius: ['responsive'],
-    borderStyle: ['responsive'],
-    borderWidth: ['responsive'],
+    borderRadius: ['responsive', 'hover'],
+    borderStyle: ['responsive', 'hover'],
+    borderWidth: ['responsive', 'hover'],
     boxShadow: ['responsive', 'group-hover', 'focus-within', 'hover', 'focus'],
     boxSizing: ['responsive'],
     clear: ['responsive'],
@@ -856,7 +877,7 @@ module.exports = {
     outline: ['responsive', 'focus-within', 'focus'],
     overflow: ['responsive'],
     overscrollBehavior: ['responsive'],
-    padding: ['responsive'],
+    padding: ['responsive', 'group-hover'],
     placeContent: ['responsive'],
     placeItems: ['responsive'],
     placeSelf: ['responsive'],
@@ -885,6 +906,7 @@ module.exports = {
       'focus-within',
       'hover',
       'focus',
+      'active',
     ],
     textDecoration: [
       'responsive',
@@ -913,7 +935,7 @@ module.exports = {
     verticalAlign: ['responsive'],
     visibility: ['responsive'],
     whitespace: ['responsive'],
-    width: ['responsive'],
+    width: ['responsive', 'group-hover', 'focus', 'focus-within'],
     wordBreak: ['responsive'],
     zIndex: ['responsive', 'focus-within', 'focus'],
   },

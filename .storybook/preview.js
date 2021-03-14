@@ -1,6 +1,11 @@
-import '../src/styles/main.css';
+import React from 'react';
+import { addDecorator } from '@storybook/react';
+import { withInfo } from '@storybook/addon-info';
+
+import Layout from './Layout';
 
 export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' },
   layout: 'centered',
 };
+
+addDecorator((storyFn) => <Layout>{storyFn()}</Layout>);
