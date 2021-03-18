@@ -1,15 +1,15 @@
 import React from 'react';
 
 import { Meta, Story } from '@storybook/react';
-import AppButton, { AppButtonProps } from './AppButton';
+import Button, { ButtonProps } from './Button';
 import { LockFilled } from '@ant-design/icons';
 
 export default {
-  title: 'Components/Atoms/AppButton',
-  component: AppButton,
+  title: 'Components/Atoms/Button',
+  component: Button,
 } as Meta;
 
-const Template: Story<AppButtonProps> = (args) => <AppButton {...args} />;
+const Template: Story<ButtonProps> = (args) => <Button {...args} />;
 
 // Primary Button
 export const Primary = Template.bind({});

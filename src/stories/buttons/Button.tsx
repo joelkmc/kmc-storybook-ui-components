@@ -4,7 +4,7 @@ import { checkClassName } from '../../utils/className_helper';
 import classnames from 'classnames';
 import { ThemeContext } from '../../context/ThemeContext';
 
-export interface AppButtonProps {
+export interface ButtonProps {
   type?:
     | 'text'
     | 'link'
@@ -22,7 +22,7 @@ export interface AppButtonProps {
   loading?: boolean;
 }
 
-const AppButton: React.FC<AppButtonProps> = ({
+const AppButton: React.FC<ButtonProps> = ({
   children,
   className,
   label = 'Button',
