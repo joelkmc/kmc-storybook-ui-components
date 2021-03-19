@@ -1,106 +1,125 @@
-import React, { useContext } from 'react';
-import { Button } from 'antd';
-import { checkClassName } from '../../utils/className_helper';
+import React from 'react';
 import classnames from 'classnames';
-import { ThemeContext } from '../../context/ThemeContext';
+import { ButtonProps } from './interface';
+import { defaultTransition } from '../../utils/helper.transition';
+import { StyledButton } from './style';
 
-export interface ButtonProps {
-  type?:
-    | 'text'
-    | 'link'
-    | 'ghost'
-    | 'default'
-    | 'primary'
-    | 'dashed'
-    | undefined;
-  label?: string;
-  className?: string;
-  danger?: boolean;
-  success?: boolean;
-  prefix?: React.ReactNode;
-  suffix?: React.ReactNode;
-  loading?: boolean;
-}
-
-const AppButton: React.FC<ButtonProps> = ({
+const Button: React.FC<ButtonProps> = ({
   children,
   className,
+  roundType = 'md',
   label = 'Button',
-  type,
-  danger,
-  success,
+  type = 'primary',
+  outlined = false,
   prefix,
   suffix,
+  htmlType = 'button',
+  loading = false,
+  disabled = false,
   ...rest
 }) => {
-  const { theme } = useContext(ThemeContext);
+  // Generate Button Text Color based on {type} props
+  const labelColor = classnames({
+    'text-white': !outlined && type !== 'link',
+    'text-kmc-primary hover:text-white border border-kmc-primary':
+      outlined && type === 'primary',
+    'text-kmc-red hover:text-white border border-kmc-red':
+      outlined && type === 'danger',
+    'text-kmc-green-300 hover:text-white border border-kmc-green-300':
+      outlined && type === 'success',
+  });
 
-  const classNamesFromTypes = classnames(
-    'font-proxiSemiBold transition-all z-10 focus:border-transparent',
+  // Generate Button Ring Color based on {type} props
+  const focusRing = classnames({
+    'focus:ring-kmc-primary focus:ring-offset-kmc-primary': type === 'primary',
+    'focus:ring-kmc-red focus:ring-offset-kmc-red': type === 'danger',
+    'focus:ring-kmc-green-200 focus:ring-offset-green-200': type === 'success',
+  });
 
-    // Primary Button Class
-    {
-      'bg-kmcOrange px-5': type === 'primary',
-    },
+  // Generate Button Background based on {type} props
+  const buttonBG = classnames({
+    'bg-kmc-primary hover:bg-opacity-80': type === 'primary' && !outlined,
+    'bg-kmc-red hover:bg-opacity-80': type === 'danger' && !outlined,
+    'bg-kmc-green-300 hover:bg-opacity-80': type === 'success' && !outlined,
 
-    // Link Button Class
-    {
-      'shadow-none text-kmcOrange': type === 'link',
-    },
+    'bg-white hover:bg-kmc-primary': type === 'primary' && outlined,
+    'bg-white hover:bg-kmc-red': type === 'danger' && outlined,
+    'bg-white hover:bg-kmc-green-300': type === 'success' && outlined,
+  });
 
-    // Default Button Class
-    {
-      'border-kmcOrange text-kmcOrange hover:bg-kmcOrange hover:text-white px-5':
-        type === 'default',
-    },
+  // Generate Button Radius based on {roundtype} Props
+  const buttonRadius = classnames({
+    'rounded-xs': roundType === 'xs',
+    'rounded-sm': roundType === 'sm',
+    'rounded-md': roundType === 'md',
+    'rounded-lg': roundType === 'lg',
+    'rounded-xl': roundType === 'xl',
+    'rounded-full': roundType === 'full',
+  });
 
-    // Dashed Button Class
-    {
-      'border-kmcOrange text-kmcOrange px-5': type === 'dashed',
-    },
+  // Generate Button Padding based on {classname} props
+  const buttonPadding = classnames({
+    'px-4 py-2': !className?.includes('p-') && type !== 'link',
+  });
 
-    // Danger Button Class
-    {
-      'border border-red-400 text-red-400 hover:bg-red-400 hover:text-white hover:border-red-400 hover:text-gray-100 px-5':
-        danger === true,
-    },
+  // Generate Button Shadow based on {classname} props
+  const buttonShadow = classnames({
+    'px-4 py-2': !className?.includes('p-') && type !== 'link',
+  });
 
-    // Success Button Class
-    {
-      'border border-kmcGreenBase text-kmcGreenBase hover:bg-kmcGreenBase hover:text-white hover:border-kmcGreenBase hover:text-gray-100 px-5':
-        success === true,
-    },
-    { 'bg-opacity-90': theme === 'dark' }
-  );
+  // Generate Button Shadow based on {classname} props
+  const buttonAlign = classnames({
+    'items-center flex loading': !className?.includes('p-') && loading,
+  });
 
-  // Generate Default classNames
-  const overrideClasses = checkClassName(className ? className : '', [
-    {
-      searchString: 'rounded',
-      defaultClassName: 'rounded-sm',
-    },
-    {
-      searchString: 'border',
-      defaultClassName: '',
-    },
-    {
-      searchString: 'shadow',
-      defaultClassName: type === 'link' ? '' : 'shadow-sm hover:shadow-md',
-    },
-  ]);
+  // default Button class
+  const defaultClass = classnames('text-center', {
+    'shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-opacity-40 font-proxiSemiBold':
+      type !== 'link',
+    'link hover:text-opacity-80': type === 'link',
+  });
 
-  const defaultButtonClass = [overrideClasses, classNamesFromTypes].join(' ');
+  // All Classes
+  const buttonClass = [
+    focusRing,
+    buttonAlign,
+    buttonBG,
+    labelColor,
+    buttonPadding,
+    buttonRadius,
+    buttonShadow,
+    defaultTransition,
+    defaultClass,
+    className,
+  ].join(' ');
+
+  console.log(buttonClass);
 
   return (
-    <Button
+    <StyledButton
       {...rest}
-      type={type}
-      danger={danger}
-      className={defaultButtonClass}
+      disabled={disabled}
+      type={htmlType}
+      className={buttonClass}
     >
-      {prefix} {label || children} {suffix}
-    </Button>
+      {prefix}{' '}
+      {loading && (
+        <span>
+          <svg
+            width='20'
+            height='20'
+            fill='currentColor'
+            className='mr-2 animate-spin'
+            viewBox='0 0 1792 1792'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path d='M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z'></path>
+          </svg>
+        </span>
+      )}
+      {label || children} {suffix}
+    </StyledButton>
   );
 };
 
-export default AppButton;
+export default Button;

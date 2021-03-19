@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import '../src/styles/app.less';
-import '../src/styles/tailwind.css';
+import '../src/index.css';
 import ThemeToggler from './../src/context/ThemeToggler';
 import name from 'module';
 import { ThemeContext, ThemeProvider } from '../src/context/ThemeContext';

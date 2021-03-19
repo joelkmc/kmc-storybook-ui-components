@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { SiderMoon, SiderSun } from '../assets/svg/Icons';
 import { ThemeContext } from './ThemeContext';
 
 const ThemeToggler: React.FC = () => {
@@ -17,7 +16,7 @@ const ThemeToggler: React.FC = () => {
             } ${theme === 'dark' && 'hidden'}`}
             onClick={handleChangeTheme}
           >
-            <SiderSun className={`leading-none cursor-pointer`} />
+            Light
           </p>
           <p
             className={`p-2 flex justify-center items-center text-sm transition-all dark:text-gray-900 cursor-pointer ${
@@ -25,7 +24,7 @@ const ThemeToggler: React.FC = () => {
             } ${theme !== 'dark' && 'hidden'}`}
             onClick={handleChangeTheme}
           >
-            <SiderMoon className={`leading-none cursor-pointer`} />
+            Dark
           </p>
         </div>
       </div>

@@ -1,12 +1,16 @@
 import React from 'react';
-
 import { Meta, Story } from '@storybook/react';
-import Button, { ButtonProps } from './Button';
-import { LockFilled } from '@ant-design/icons';
+import Button from './Button';
+import { ButtonProps, ButtonTypeControls } from './interface';
+import { RoundTypeControl } from '../interface/RoundType';
 
 export default {
   title: 'Components/Atoms/Button',
   component: Button,
+  argTypes: {
+    roundType: RoundTypeControl,
+    type: ButtonTypeControls,
+  },
 } as Meta;
 
 const Template: Story<ButtonProps> = (args) => <Button {...args} />;
@@ -17,22 +21,16 @@ Primary.args = {
   type: 'primary',
 };
 
-// Default Button
-export const Default = Template.bind({});
-Default.args = {
-  type: 'default',
-};
-
 // Danger Button
 export const Danger = Template.bind({});
 Danger.args = {
-  danger: true,
+  type: 'danger',
 };
 
 // Success Button
 export const Success = Template.bind({});
 Success.args = {
-  success: true,
+  type: 'success',
 };
 
 // Link Button
@@ -41,16 +39,8 @@ Link.args = {
   type: 'link',
 };
 
-// Prefix Button
-export const ButtonWithPrefix = Template.bind({});
-ButtonWithPrefix.args = {
-  type: 'primary',
-  prefix: <LockFilled />,
-};
-
-// Suffix Button
-export const ButtonWithSuffix = Template.bind({});
-ButtonWithSuffix.args = {
-  type: 'primary',
-  suffix: <LockFilled />,
+// Primary Button
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true,
 };

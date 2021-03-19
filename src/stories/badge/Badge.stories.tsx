@@ -3,17 +3,13 @@ import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import Badge, { BadgeProps } from './Badge';
 import { kmcOrange } from '../../utils/kmcColors';
+import { RoundTypeControl } from '../interface/RoundType';
 
 export default {
   title: 'Components/Atoms/Badge',
   component: Badge,
   argTypes: {
-    rounded: {
-      control: {
-        type: 'select',
-        options: ['xs', 'sm', 'md', 'lg', 'xl', 'xl', 'full'],
-      },
-    },
+    rounded: RoundTypeControl,
     color: {
       control: 'color',
       defaultValue: kmcOrange,
