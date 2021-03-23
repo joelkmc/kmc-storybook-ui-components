@@ -1,7 +1,7 @@
 import { RoundType } from './../interface/RoundType';
 
 export interface ButtonProps {
-  type?: 'link' | 'primary' | 'danger' | 'success' | undefined;
+  type?: 'secondary' | 'link' | 'primary' | 'danger' | 'success' | undefined;
   label?: string;
   className?: string;
   outlined?: boolean;

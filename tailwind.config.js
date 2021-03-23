@@ -20,8 +20,8 @@ module.exports = {
         'kmc-gray-300': '##828282',
         'kmc-gray-400': '#4F4F4F',
         'kmc-gray-500': '#333333',
-        'kmc-primary': '#f99d3a',
-        'kmc-secondary': '#f2c94c',
+        'kmc-primary': '#0b2535',
+        'kmc-secondary': '#e55239',
         kmcVisitedLinks: '#733d90',
       },
       fontFamily: {

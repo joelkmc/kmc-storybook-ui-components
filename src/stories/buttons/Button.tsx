@@ -23,6 +23,8 @@ const Button: React.FC<ButtonProps> = ({
     'text-white': !outlined && type !== 'link',
     'text-kmc-primary hover:text-white border border-kmc-primary':
       outlined && type === 'primary',
+    'text-kmc-secondary hover:text-white border border-kmc-secondary':
+      outlined && type === 'secondary',
     'text-kmc-red hover:text-white border border-kmc-red':
       outlined && type === 'danger',
     'text-kmc-green-300 hover:text-white border border-kmc-green-300':
@@ -32,6 +34,8 @@ const Button: React.FC<ButtonProps> = ({
   // Generate Button Ring Color based on {type} props
   const focusRing = classnames({
     'focus:ring-kmc-primary focus:ring-offset-kmc-primary': type === 'primary',
+    'focus:ring-kmc-secondary focus:ring-offset-kmc-secondary':
+      type === 'secondary',
     'focus:ring-kmc-red focus:ring-offset-kmc-red': type === 'danger',
     'focus:ring-kmc-green-200 focus:ring-offset-green-200': type === 'success',
   });
@@ -39,10 +43,12 @@ const Button: React.FC<ButtonProps> = ({
   // Generate Button Background based on {type} props
   const buttonBG = classnames({
     'bg-kmc-primary hover:bg-opacity-80': type === 'primary' && !outlined,
+    'bg-kmc-secondary hover:bg-opacity-80': type === 'secondary' && !outlined,
     'bg-kmc-red hover:bg-opacity-80': type === 'danger' && !outlined,
     'bg-kmc-green-300 hover:bg-opacity-80': type === 'success' && !outlined,
 
     'bg-white hover:bg-kmc-primary': type === 'primary' && outlined,
+    'bg-white hover:bg-kmc-secondary': type === 'primary' && outlined,
     'bg-white hover:bg-kmc-red': type === 'danger' && outlined,
     'bg-white hover:bg-kmc-green-300': type === 'success' && outlined,
   });
